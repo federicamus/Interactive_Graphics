@@ -11,17 +11,17 @@ function composite( bgImg, fgImg, fgOpac, fgPos )
     const fgWidth = fgImg.width;
     const fgHeight = fgImg.height;
 
-    for (let y = 0; y < fgHeight; y++) {
-        for (let x = 0; x < fgWidth; x++) {
-            const fgX = x + fgPos.x;
-            const fgY = y + fgPos.y;
+    for (let fgY = 0; fgY < fgHeight; fgY++) {
+        for (let fgX = 0; fgX < fgWidth; fgX++) {
+            const bgX = fgX + fgPos.x;
+            const bgY = fgY + fgPos.y;
 
-            if (fgX < 0 || fgY < 0 || fgX >= bgWidth || fgY >= bgHeight) {
+            if (bgX < 0 || bgY < 0 || bgX >= bgWidth || bgY >= bgHeight) {
                 continue;
             }
 
-            const fgIndex = (y * fgWidth + x) * 4;
-            const bgIndex = (fgY * bgWidth + fgX) * 4;
+            const fgIndex = (fgY * fgWidth + fgX) * 4;
+            const bgIndex = (bgY * bgWidth + bgX) * 4;
 
             const fgAlpha = (fgData[fgIndex + 3] / 255) * fgOpac;
             const bgAlpha = 1 - fgAlpha;
